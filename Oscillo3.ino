@@ -113,7 +113,7 @@ void setup() {
 
   digitalWrite(RSTPin, HIGH);
   digitalWrite(StartPin, HIGH);
-  digitalWrite(PolPin, HIGH);
+  digitalWrite(PolPin, LOW);
   bitClear(PORTJ,7); // clear INCA
   
   pinMode(RL3Pin, OUTPUT);
@@ -275,7 +275,7 @@ void processEvents(){
         int value = currentCmd.toInt();
         if ( value > 0 && value < 3 ){
           invTrig = bool(value - 1);
-          digitalWrite(PolPin,!invTrig);
+          digitalWrite(PolPin,invTrig);
           commandRecognized = true;
           //Serial.println(" nouvelle valeur: " + String(invTrig));
           Serial3.println("OK");
@@ -513,75 +513,76 @@ void applyChan1CouplingMode(){
 void applyChan2CouplingMode(){
   switch(currentCouplingMode2){
     case 0:   // DC Coupling
-    digitalWrite(RL12Pin, HIGH);
-    digitalWrite(RL10Pin, LOW);
+    digitalWrite(RL12Pin, LOW);
     break;
     case 1: // AC Coupling
     digitalWrite(RL12Pin, HIGH);
     digitalWrite(RL10Pin, HIGH);
     break;
     case 2: // GND Coupling
-    digitalWrite(RL12Pin, LOW);
+    digitalWrite(RL12Pin, HIGH);
+    digitalWrite(RL10Pin, LOW);
     break;
   }
 }
 
 void applyCanal2Res(){
-    switch(currentYRes2){
+/*  switch(currentYRes2){
     case 1:
-    digitalWrite(RL9Pin, HIGH);
-    digitalWrite(RL11Pin, LOW);
-    digitalWrite(RL8Pin, HIGH);
-    digitalWrite(RL7Pin, HIGH);
+    digitalWrite(RL2CANAL2Pin, HIGH);
+    digitalWrite(RL3CANAL2Pin, HIGH);
+    digitalWrite(RL1CANAL2Pin, HIGH);
+    digitalWrite(RL4CANAL2Pin, HIGH);
     break;
     case 2:
-    digitalWrite(RL9Pin, HIGH);
-    digitalWrite(RL11Pin, LOW);
-    digitalWrite(RL8Pin, HIGH);
-    digitalWrite(RL7Pin, LOW);
+    digitalWrite(RL2CANAL2Pin, HIGH);
+    digitalWrite(RL3CANAL2Pin, HIGH);
+    digitalWrite(RL1CANAL2Pin, LOW);
+    digitalWrite(RL4CANAL2Pin, HIGH);
     break;
     case 3:
-    digitalWrite(RL9Pin, HIGH);
-    digitalWrite(RL11Pin, LOW);
-    digitalWrite(RL8Pin, LOW);
+    digitalWrite(RL2CANAL2Pin, HIGH);
+    digitalWrite(RL3CANAL2Pin, HIGH);
+    digitalWrite(RL1CANAL2Pin, LOW);
+    digitalWrite(RL4CANAL2Pin, LOW);
     break;
-    
     case 4:
-    digitalWrite(RL9Pin, LOW);
-    digitalWrite(RL11Pin, HIGH);
-    digitalWrite(RL8Pin, HIGH);
-    digitalWrite(RL7Pin, HIGH);
+    digitalWrite(RL2CANAL2Pin, HIGH);
+    digitalWrite(RL3CANAL2Pin, LOW);
+    digitalWrite(RL1CANAL2Pin, HIGH);
+    digitalWrite(RL4CANAL2Pin, HIGH);
     break;
     case 5:
-    digitalWrite(RL9Pin, LOW);
-    digitalWrite(RL11Pin, HIGH);
-    digitalWrite(RL8Pin, HIGH);
-    digitalWrite(RL7Pin, LOW);
+    digitalWrite(RL2CANAL2Pin, HIGH);
+    digitalWrite(RL3CANAL2Pin, LOW);
+    digitalWrite(RL1CANAL2Pin, LOW);
+    digitalWrite(RL4CANAL2Pin, HIGH);
     break;
     case 6:
-    digitalWrite(RL9Pin, LOW);
-    digitalWrite(RL11Pin, HIGH);
-    digitalWrite(RL8Pin, LOW);
+    digitalWrite(RL2CANAL2Pin, HIGH);
+    digitalWrite(RL3CANAL2Pin, LOW);
+    digitalWrite(RL1CANAL2Pin, LOW);
+    digitalWrite(RL4CANAL2Pin, LOW);
     break;
-    
     case 7:
-    digitalWrite(RL9Pin, LOW);
-    digitalWrite(RL11Pin, LOW);
-    digitalWrite(RL8Pin, HIGH);
-    digitalWrite(RL7Pin, HIGH);
+    digitalWrite(RL2CANAL2Pin, LOW);
+    digitalWrite(RL3CANAL2Pin, LOW);
+    digitalWrite(RL1CANAL2Pin, HIGH);
+    digitalWrite(RL4CANAL2Pin, HIGH);
     break;
     case 8:
-    digitalWrite(RL9Pin, LOW);
-    digitalWrite(RL11Pin, LOW);
-    digitalWrite(RL8Pin, HIGH);
-    digitalWrite(RL7Pin, LOW);
+    digitalWrite(RL2CANAL2Pin, LOW);
+    digitalWrite(RL3CANAL2Pin, LOW);
+    digitalWrite(RL1CANAL2Pin, LOW);
+    digitalWrite(RL4CANAL2Pin, HIGH);
     break;
     case 9:
-    digitalWrite(RL9Pin, LOW);
-    digitalWrite(RL11Pin, LOW);
-    digitalWrite(RL8Pin, LOW);
+    digitalWrite(RL2CANAL2Pin, LOW);
+    digitalWrite(RL3CANAL2Pin, LOW);
+    digitalWrite(RL1CANAL2Pin, LOW);
+    digitalWrite(RL4CANAL2Pin, LOW);
     break;
-  }
+  }*/
 }
 
 void applyTrigMode(){
